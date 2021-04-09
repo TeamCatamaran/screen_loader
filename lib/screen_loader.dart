@@ -1,12 +1,13 @@
 library screen_loader;
 
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 mixin ScreenLoader<T extends StatefulWidget> on State<T> {
   bool isLoading = false;
-  static Widget _globalLoader;
-  static double _globalLoadingBgBlur = 5.0;
+  static Widget? _globalLoader;
+  static double? _globalLoadingBgBlur = 5.0;
 
   /// starts the [loader]
   startLoading() {
@@ -33,7 +34,7 @@ mixin ScreenLoader<T extends StatefulWidget> on State<T> {
   }
 
   /// override [loadingBgBlur] if you wish to change blur value in specific view
-  double loadingBgBlur() {
+  double? loadingBgBlur() {
     return null;
   }
 
@@ -42,7 +43,7 @@ mixin ScreenLoader<T extends StatefulWidget> on State<T> {
   }
 
   /// override [loader] if you wish to add custom loader in specific view
-  Widget loader() {
+  Widget? loader() {
     return null;
   }
 
@@ -66,7 +67,7 @@ mixin ScreenLoader<T extends StatefulWidget> on State<T> {
   }
 
   Widget screen(BuildContext context);
-  
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -87,11 +88,11 @@ mixin ScreenLoader<T extends StatefulWidget> on State<T> {
 /// [ScreenLoaderApp] is used to provide global settings for the screen loader
 class ScreenLoaderApp extends StatelessWidget {
   final MaterialApp app;
-  final Widget globalLoader;
-  final double globalLoadingBgBlur;
+  final Widget? globalLoader;
+  final double? globalLoadingBgBlur;
 
   ScreenLoaderApp({
-    @required this.app,
+    required this.app,
     this.globalLoader,
     this.globalLoadingBgBlur,
   });
